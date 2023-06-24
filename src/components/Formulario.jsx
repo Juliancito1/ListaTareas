@@ -1,39 +1,41 @@
 import {Form, Button} from 'react-bootstrap';
 import ListaTareas from './ListaTareas';
 import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { crearTarea } from '../helpers/helpers';
 
 const Formulario = () => {
-    const [tarea, setTarea] = useState('');
-    let tareasLocalstorage = JSON.parse(localStorage.getItem('listaTareas')) || []
-    const [listadoTareas, setListadoTareas] = useState(tareasLocalstorage);
+    const{register,handleSubmit,formState: {errors},reset} = useForm()
 
-useEffect(() => {
-  localStorage.setItem('listaTareas', JSON.stringify(listadoTareas))
-}, [listadoTareas])
-
-const handleSubmit = (e) => {
-  e.preventDefault();
-  setListadoTareas([...listadoTareas,tarea])
-  setTarea('');
-}
-
-const borrarTarea = (nombreTarea) => {
-  let arregloFiltrado = listadoTareas.filter((itemTarea) => itemTarea !== nombreTarea);
-  setListadoTareas(arregloFiltrado);
-}
+    const onSubmit = (tarea) => {
+      console.log('submit')
+      crearTarea(tarea).then((respuesta)=>{
+        if(respuesta.status===201)
+        {
+          reset()
+        }
+        else{
+          console.log("error")
+        }
+      })
+    }
 
     return (
         <section>
-            <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3 d-flex" controlId="tarea">
-        <Form.Control type="text" placeholder="Ingrese una tarea" onChange={(e) => setTarea(e.target.value)} 
-        value= {tarea}/>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group className="mb-3" controlId="tarea">
+        <Form.Control type="text" placeholder="Ingrese una tarea"{...register('tarea',{
+          required: 'Ingrese una tarea'
+        })} />
+        <Form.Text className="text-danger">
+                {errors.tarea?.message}
+        </Form.Text>
+      </Form.Group>
       <Button variant="success" type="submit">
         Enviar
       </Button>
-      </Form.Group>
     </Form>
-    <ListaTareas listadoTareas={listadoTareas} borrarTarea={borrarTarea}></ListaTareas>
+    <ListaTareas></ListaTareas>
         </section>
     );
 };
