@@ -2,16 +2,27 @@ import {Form, Button} from 'react-bootstrap';
 import ListaTareas from './ListaTareas';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { crearTarea } from '../helpers/helpers';
+import { crearTarea, obtenerTareas } from '../helpers/helpers';
+import Swal from 'sweetalert2';
 
 const Formulario = () => {
     const{register,handleSubmit,formState: {errors},reset} = useForm()
-
+    const [tareas,setTareas] = useState([])
     const onSubmit = (tarea) => {
-      console.log('submit')
       crearTarea(tarea).then((respuesta)=>{
         if(respuesta.status===201)
         {
+          Swal.fire(
+            "Tarea Agregada",
+            "La tarea fue agregada con éxito",
+            "success"
+            )
+            obtenerTareas().then((respuesta) =>{
+              if(respuesta)
+              {
+                setTareas(respuesta)
+              }
+            })
           reset()
         }
         else{
@@ -35,7 +46,7 @@ const Formulario = () => {
         Enviar
       </Button>
     </Form>
-    <ListaTareas></ListaTareas>
+    <ListaTareas tareas={tareas} setTareas={setTareas}></ListaTareas>
         </section>
     );
 };
