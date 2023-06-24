@@ -15,3 +15,24 @@ export const crearTarea = async (tarea) => {
         
     }
 }
+
+export const obtenerTareas = async () => {
+    try {
+        const respuesta = await fetch(URL_TAREAS)
+        const listaTareas = respuesta.json()
+        return listaTareas;
+    } catch (error) {
+        
+    }
+}
+
+export const borrarTarea = async (id) => {
+    try {
+        const respuesta = await fetch(`${URL_TAREAS}/${id}`,{
+            method: "DELETE"
+        })
+        return respuesta;
+    } catch (error) {
+        
+    }
+}
