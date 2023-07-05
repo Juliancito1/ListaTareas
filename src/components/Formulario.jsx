@@ -9,6 +9,7 @@ const Formulario = () => {
     const{register,handleSubmit,formState: {errors},reset} = useForm()
     const [tareas,setTareas] = useState([])
     const onSubmit = (tarea) => {
+      console.log(tarea)
       crearTarea(tarea).then((respuesta)=>{
         if(respuesta.status===201)
         {

@@ -1,3 +1,7 @@
 {
-  "tareas": []
+  "tareas": [
+    {
+      "tarea":"Lavar los platos"
+    }
+  ]
 }

@@ -12,7 +12,7 @@ export const crearTarea = async (tarea) => {
         })
         return respuesta
     } catch (error) {
-        
+        console.log(error)
     }
 }
 
@@ -22,7 +22,7 @@ export const obtenerTareas = async () => {
         const listaTareas = respuesta.json()
         return listaTareas;
     } catch (error) {
-        
+        console.log(error)
     }
 }
 
