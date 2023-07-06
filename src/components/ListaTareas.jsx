@@ -1,11 +1,15 @@
 import { ListGroup } from "react-bootstrap";
 import ItemTarea from "./ItemTarea";
+import { useEffect, useState } from "react";
+import { obtenerTareas } from "../helpers/helpers";
 
-const ListaTareas = ({listadoTareas, borrarTarea}) => {
+const ListaTareas = ({tareas,setTareas}) => {
+
+  
     return (
     <ListGroup>
       {
-        listadoTareas.map((tarea,indice) => <ItemTarea key={indice} tarea={tarea} borrarTarea={borrarTarea}></ItemTarea>)
+        tareas.map((tarea) => <ItemTarea tarea={tarea} key={tarea._id} setTareas={setTareas}></ItemTarea>)
       }
     </ListGroup>
     );
