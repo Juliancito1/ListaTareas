@@ -1,9 +1,9 @@
-# Trabajo Practico React: Ejercicio 5
+# Trabajo Practico React: Ejercicio 5 (Lista de Tareas con Backend)
 ![React](https://cdn.cdnlogo.com/logos/r/85/react.svg)
 
-Repositorio creado para la realización del Ejercicio 5 del TP de React.
+Repositorio creado para la realización del ejercicio Lista de Tareas del TP de React utilizando BackEnd.
 
->**IMPORTANTE:** Revisar el script en caso de duda o consulta, al clonar el repositorio recordar utilizar el comando npm install en el cmd o terminal de Visual Code
+>**IMPORTANTE:** Al clonar el repositorio recordar utilizar el comando npm install en el cmd o terminal de Visual Code
 ## Tecnologias / Herramientas ⚒️
 
 - HTML
@@ -18,9 +18,8 @@ Repositorio creado para la realización del Ejercicio 5 del TP de React.
 ## Para clonar el repositorio 💻
 
 ```bash
-git clone https://github.com/Juliancito1/ReactEj5
+git clone https://github.com/Juliancito1/ListaTareas
 ```
-
 ## Autor 
 Julián Martín [GitHub](https://github.com/Juliancito1)
 
